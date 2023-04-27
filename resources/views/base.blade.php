@@ -9,5 +9,7 @@
 </head>
 <body class=" h-screen flex justify-center items-center">
     @yield('content')
+
+    @yield('js')
 </body>
 </html>

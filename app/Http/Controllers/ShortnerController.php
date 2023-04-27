@@ -17,8 +17,9 @@ class ShortnerController extends Controller
         $shortned_url = route('shortner.index') . '/' . $random;
 
         $url = Url::where('url', $request->input('url'))->first();
+        
         if ($url != null)
-            return redirect()->route('shortner.show', ['shortned_url' => $url->url]);;
+            return redirect()->route('shortner.show', ['shortned_url' => route('shortner.index') . '/' . $url->shortned_url]);;
 
 
         Url::create([
@@ -33,7 +34,7 @@ class ShortnerController extends Controller
         $request->validate([
             'shortned_url' => 'required|url'
         ]);
-        return $request->shortned_url;
+        return view('show', ['url' => $request->shortned_url]);
     }
 
     public function redirect(string $uri) {
